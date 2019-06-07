@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Depots</title>
+    <title>Pragprog Books Online</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <% if request.ssl? %>
+    <% if request.ssl? %><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
       <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
-      <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+      <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js' %>
+      <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
     <% else %>
       <%= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
-      <%= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+      <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js' %>
+      <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
     <% end %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
   </head>
-
   <body>    
     <header class="main">
-      <%= image_tag 'logo.png', alt: 'The Pragmatic Bookshelf' %>
+      <a href='./'><%= image_tag 'logo.png', alt: 'The Pragmatic Bookshelf' %></a>      
       <h1><%= @page_title %></h1>
     </header>
     <section class="content">
@@ -28,17 +31,33 @@
           <%= render_if @cart && @cart.line_items.any?, @cart %>
         </div>        
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/products">Products</a></li>
-          <li><a href="/orders">Orders</a></li>
-          <!--<li><a href="/questions">Questions</a></li>
-          <li><a href="/news">News</a></li>
-          <li><a href="/contact">Contact</a></li>-->
+          <li><a href="/"><%= t('.home') %></a></li>
+          <li><a href="/products"><%= t('.products') %></a></li>
+          <li><a href="/orders"><%= t('.orders') %></a></li>
         </ul>
+        
+        <% if session[:user_id] %>
+          <nav class="logged_in_nav">
+          <ul>
+            <!--<li><%= link_to 'Orders', orders_path %></li>
+            <li><%= link_to 'Products', products_path %></li>-->
+            <li><%= link_to  t('.users'), users_path %></li>
+            <li><%= button_to t('.logout'), logout_path, method: :delete %></li>
+           <!-- <li><a href="/users"><%= t('.users') %></a></li>
+            <li><a href="/logout"><%= t('.logout') %></a></li>-->
+          </ul>
+          </nav>
+          
+        <% end %>
       </nav>
       <main class='<%= controller.controller_name %>'>
         <%= yield %>
       </main>
     </section>
+    
+    <!--<script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>-->
   </body>
 </html>

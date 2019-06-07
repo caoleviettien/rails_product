@@ -74,10 +74,8 @@ header.main {
                 }
             }
             li:hover{
-                border-radius: 5px;
                 background: #5cb85c;
                 color: white;
-                font-weight: bold;
                 box-shadow: 0.176em 0.176em 0.354em 0px rgba(0,0,0,0.75);
             }
         }
@@ -90,7 +88,6 @@ header.main {
 
 .notice, #notice {
     background: #ffb;
-    border-radius: 0.5em;
     border: solid 0.177em #882;
     color: #882;
     font-weight: bold;
@@ -105,7 +102,6 @@ header.main {
             margin-top: 0;
         }
         background: white;
-        border-radius: 0.5em;
         margin: 2em;
         padding: 3em;
         @media (min-width: 30em) {
@@ -116,7 +112,6 @@ header.main {
 
 .checkout {
     background-color: #5cb85c !important;
-    border-radius: 0.354em;
     border: solid thin #888;
     color: black;
     font-size: 1.41em;
@@ -155,7 +150,6 @@ header.main {
     }
     input[type="submit"] {
         background-color: #bfb;
-        border-radius: 0.354em;
         border: solid thin #888;
         color: black;
         font-size: 1.41em;
@@ -168,7 +162,6 @@ header.main {
     // Also, clean up the error styling
     #error_explanation {
         background-color: white;
-        border-radius: 1em;
         border: solid thin red;
         margin-bottom: 0.5em;
         padding: 0.5em;
@@ -201,5 +194,26 @@ header.main {
         input,textarea {
             background: pink;
         }
+    }
+}
+
+nav.logged_in_nav {
+    border-top: solid thin #bfb;
+    padding: 0.354em 0;
+    margin-top: 0.354em;
+    input[type="submit"] {
+        // Make the logout button look like a
+        // link, so it matches the nav style
+        background: none;
+        border: none;
+        color: #000;
+        font-size: 1em;
+        letter-spacing: 0.354em;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+    }
+    input[type="submit"]:hover {
+        color: white;
     }
 }
